@@ -1,2 +1,0 @@
-"809dc5d7214521e5b6edc303b972c385692e7867"
-[cl-struct-undo-tree [nil (#2=[nil nil ((#("j" 0 1 (fontified t help-echo cider--help-echo cider-locals #1=("let" "result" "instructions" "landmarks" "ten-action-piles"))) . -1836) (undo-tree-id0 . -1) (1833 . 1837) (#("map" 0 3 (fontified t help-echo cider--help-echo cider-locals #1#)) . 1833) (undo-tree-id1 . 3) (t 23375 29438 0 0)) nil (23376 37478 830671 0) 0 nil]) nil nil (23376 37478 830674 0) 0 nil] #2# 52 1 nil]
