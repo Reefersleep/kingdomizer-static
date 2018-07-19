@@ -15,7 +15,6 @@
             [lein-figwheel "0.5.16"]]
 
   :min-lein-version "2.5.0"
-#_  :jvm-opts ["--add-modules" "java.xml.bind"]
   :clean-targets ^{:protect false}
   [:target-path
    [:cljsbuild :builds :app :compiler :output-dir]
@@ -63,6 +62,8 @@
                                   [org.clojure/tools.nrepl "0.2.13"]
                                   [com.cemerick/piggieback "0.2.2"]
                                   [pjstadig/humane-test-output "0.8.2"]]
+
+                   :jvm-opts ["--add-modules" "java.xml.bind"]
 
                    :plugins [[lein-figwheel "0.5.11"]
                              [lein-doo "0.1.8"]]}})
