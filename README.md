@@ -1,11 +1,9 @@
 # Kingdomizer
 ## A Dominion randomizer
 
-You can try Kingdomizer here: http://kingdomizer.herokuapp.com
+You can try Kingdomizer here: http://kingdomizer.netlify.com
 
 Kingdomizer is beta! Expect questionable features and breaking changes.
-
-The app might take a few seconds to spin up since it's hosted for free on Heroku.
 
 To run tests; `lein doo nodejs test` (you need to have nodejs installed)
 
