@@ -63,7 +63,7 @@
                                   [com.cemerick/piggieback "0.2.2"]
                                   [pjstadig/humane-test-output "0.8.2"]]
 
-                   :jvm-opts ["--add-modules" "java.xml.bind"]
+;;                   :jvm-opts ["--add-modules" "java.xml.bind"]
 
                    :plugins [[lein-figwheel "0.5.11"]
                              [lein-doo "0.1.8"]]}})
