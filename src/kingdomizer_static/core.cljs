@@ -248,6 +248,52 @@
              add-react-keys
              doall)])
 
+(defn promos-selection []
+  [:div (->> kingdomizer-static.sets/flattened-piles
+             (clojure.set/select (fn filter-by-promo-type [{:keys [belongs-to-set] :as pile}]
+                                   (#{"Promos"} belongs-to-set)))
+             (map (fn [{:keys [pile-name name]}]
+                    (or pile-name name))) ;; Due to Summon
+             sort
+             (map (fn dominion-promo-option [promo-name]
+                    [:div {:title (if @(re-frame.core/subscribe [:selected-promo? promo-name])
+                                    (str "Deselect " promo-name)
+                                    (str "Select " promo-name))
+                           :on-click #(re-frame.core/dispatch [:toggle-promo-selection promo-name])
+                           :style {:min-height    25
+                                   :border-bottom "1px solid grey"
+                                   :display       :flex
+                                   :align-items   :center
+                                   :user-select   :none
+                                   :cursor        :pointer}}
+                     [:div {:style {:min-width  20
+                                    :min-height 20
+                                    :display    :flex
+                                    :align-items :center
+                                    :justify-content :center}}
+                      (if @(re-frame.core/subscribe [:selected-promo? promo-name])
+                        [:img {:src    "images/check-mark.svg"
+                               :height 15
+                               :width  15}]
+                        [:div {:style {:min-height 15
+                                       :min-width  15}}])]
+                     promo-name]))
+             (cons [:div {:style {:min-height    25
+                                  :border-bottom "1px solid grey"
+                                  :display       :flex
+                                  :justify-content :center
+                                  :align-items   :center
+                                  :user-select   :none
+                                  :cursor        :pointer}}
+                    [:div {:style {:min-width  20
+                                   :min-height 20
+                                   :display    :flex
+                                   :align-items :center
+                                   :justify-content :center}}
+                     "Promos"]])
+             add-react-keys
+             doall)])
+
 (defn error-reporting []
   [:div @(re-frame.core/subscribe [:error])])
 
@@ -271,14 +317,16 @@
    (when-let [events @(re-frame.core/subscribe [:events])]
      [:div
       (->> events
-           (map (fn render-event [{:keys [name] :as event}]
+           (map (fn render-event [{:keys [pile-name ;; This is an exception due to Summon
+                                          name] :as event}]
                   [:div {:style {:background-color events-banner-background
                                  :border-bottom    "1px solid black"
                                  :padding-left     10
                                  :padding-top      2
                                  :padding-bottom   2 }}
                    name]))
-           add-react-keys)])
+           add-react-keys
+           doall)])
    (when-let [landmarks @(re-frame.core/subscribe [:landmarks])]
      [:div
       (->> landmarks
@@ -317,6 +365,7 @@
     [control-panel-bottom-row]]
    [sets-selection]
    #_[pile-number-selection] ;; Maybe only for advanced instructions
+   [promos-selection]
    [new-kingdom-trigger]
    [pile-sort-selection]
    [error-reporting]

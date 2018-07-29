@@ -1823,4 +1823,51 @@
      :supply-type    :kingdom-cards,
      :pile-name      "Raider",
      :cost           {:coins 6},
-     :types          [:night :duration :attack]}})
+     :types          [:night :duration :attack]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Black Market",
+     :cost           {:coins 3},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Dismantle",
+     :cost           {:coins 4},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Envoy",
+     :cost           {:coins 4},
+     :types          [:action]}
+    {:pile-name      "Sauna/Avanto",
+     :cards
+     [{:name "Sauna", :cost {:coins 4}, :types [:action]}
+      {:name "Avanto", :cost {:coins 5}, :types [:action]}],
+     :belongs-to-set "Empires",
+     :supply-type    :kingdom-cards,
+     :cost           {:coins 4},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Walled Village",
+     :cost           {:coins 4},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Governor",
+     :cost           {:coins 5},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Stash",
+     :cost           {:coins 5},
+     :types          [:treasure]}
+    {:belongs-to-set "Promos",
+     :supply-type    :kingdom-cards,
+     :pile-name      "Prince",
+     :cost           {:coins 8},
+     :types          [:action]}
+    {:belongs-to-set "Promos",
+     :supply-type    :events
+     :name           "Summon",
+     :cost           {:coins 5},}})

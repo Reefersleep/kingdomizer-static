@@ -24,6 +24,11 @@
    (get-in db [:selected-sets set-name])))
 
 (re-frame.core/reg-sub
+ :selected-promo?
+ (fn [db [_ promo-name]]
+   (get-in db [:selected-promos promo-name])))
+
+(re-frame.core/reg-sub
  :no-sets-selected?
  :<- [:selected-sets]
  (fn [selected-sets _]

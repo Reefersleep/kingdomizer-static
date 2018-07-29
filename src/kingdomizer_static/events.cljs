@@ -30,6 +30,12 @@
                   :selected-sets            (->> kingdomizer-static.sets/all-dominion-sets
                                                  (map (fn [set-name]
                                                         [set-name true]))
+                                                 (into {}))
+                  :selected-promos          (->> kingdomizer-static.sets/flattened-piles
+                                                 (clojure.set/select (fn filter-by-promo-type [{:keys [belongs-to-set] :as pile}]
+                                                                       (#{"Promos"} belongs-to-set)))
+                                                 (map (fn [{:keys [pile-name name]}]
+                                                        [(or pile-name name) false])) ;; Due to Summon
                                                  (into {}))}))}))
 
 (re-frame.core/reg-event-db
@@ -41,6 +47,11 @@
  :toggle-set-selection
  (fn [db [_ set-name]]
    (update-in db [:selected-sets set-name] not)))
+
+(re-frame.core/reg-event-db
+ :toggle-promo-selection
+ (fn [db [_ promo-name]]
+   (update-in db [:selected-promos promo-name] not)))
 
 (re-frame.core/reg-event-db
  :select-number-of-piles
@@ -146,6 +157,7 @@
           colony                           :colony
           {bane-card-pile-name :pile-name} :bane-card-pile
           :as                              instructions} (kingdomizer-static.randomization/make-kingdom {:selected-sets            (kingdomizer-static.db/only-selected-sets-names db)
+                                                                                                         :selected-promos          (kingdomizer-static.db/only-selected-promo-names db)
                                                                                                   :selected-number-of-piles @(re-frame.core/subscribe [:selected-number-of-piles])
                                                                                                   :full-pile-pool          kingdomizer-static.sets/flattened-piles
                                                                                                   :picked-piles             []})

@@ -72,6 +72,12 @@
                              (selected-sets belongs-to-set)))
        (assoc instructions :pile-pool)))
 
+(defn- find-available-promo-piles [{:keys [full-pile-pool selected-promos] :as instructions}]
+  (->> full-pile-pool
+       (clojure.set/select (fn filter-piles-by-pile-name [{:keys [pile-name name] :as pile}]
+                             (selected-promos (or pile-name name)))) ;; Due to Summon
+       (update instructions :pile-pool clojure.set/union)))
+
 (defn ?pick-platinum-and-colony [{:keys [picked-piles] :as instructions}]
   (if (= "Prosperity" (-> picked-piles
                           first
@@ -119,6 +125,7 @@
   [instructions]
   (-> instructions
       find-available-piles-from-sets
+      find-available-promo-piles
       ?ensure-at-least-three-alchemy-piles
       pick-x-piles-among-sets
       ?pick-bane-card
