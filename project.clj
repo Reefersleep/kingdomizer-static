@@ -58,12 +58,14 @@
              :css-dirs ["public/css"]}
 
   :profiles {:dev {:dependencies [[binaryage/devtools "0.9.4"]
-                                  [figwheel-sidecar "0.5.11"]
+                                  [figwheel-sidecar "0.5.16"]
                                   [org.clojure/tools.nrepl "0.2.13"]
-                                  [com.cemerick/piggieback "0.2.2"]
+                                  [cider/piggieback "0.3.8"]
                                   [pjstadig/humane-test-output "0.8.2"]]
 
-;;                   :jvm-opts ["--add-modules" "java.xml.bind"]
+                   :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
+
+                   :jvm-opts ["--add-modules" "java.xml.bind"]
 
                    :plugins [[lein-figwheel "0.5.11"]
                              [lein-doo "0.1.8"]]}})

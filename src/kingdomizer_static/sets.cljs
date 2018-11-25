@@ -16,7 +16,8 @@
                               "Empires"
                               "Nocturne"]))
 
-(def flattened-piles
+(def flattened-piles ;;TODO Unify the :name/:pile-name keyword for kingdom-cards and events, respectively. Call it...  :entity-name ? :name is not so good, since, destructured into a symbol, it will shadow the name function. entity-name is very generic and far from Dominion vernacular, though. 
+
   #{{:pile-name      "Prizes",
      :cards
      [{:name "Bag Of Gold", :cost {:coins 0}, :types [:action :prize]}
